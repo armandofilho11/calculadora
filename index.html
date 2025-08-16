@@ -51,14 +51,14 @@
     </div>
 
      <script>
-        //campo do display
+    
         display=document.getElementById('numberbox');
-        //elementos ensenciais
+     
         n1 = null;
         sinal = null;
         n2=null;
 
-        //insirir numero no display
+       
         function inserir(a){
             if(display.value==="0"){
                 display.value=a;
@@ -66,16 +66,16 @@
                 display.value +=a;
             }
            }
-        //selecionar operador
+        
         function operador(op){
-            n1 = parseFloat(display.value); //vai guardar o valor 1
+            n1 = parseFloat(display.value); 
             sinal = op;
             display.value = "0";
         }
 
 
         function calcular(){
-            n2 = parseFloat(display.value); // vai guardar o valor 2
+            n2 = parseFloat(display.value); 
             
             switch(sinal){
 
