@@ -15,39 +15,130 @@
         </div>
 
         <div class="row">
-            <button type="button" class="botao">AC</button>
-            <button type="button" class="botao">DEL</button>
-            <button type="button" class="botao">%</button>
-            <button type="button" class="botao">/</button>
+            <button onclick="limpar()" type="button" class="botao">AC</button>
+            <button onclick="apagar()" type="button" class="botao">DEL</button>
+            <button onclick="operador('%')" type="button" class="botao">%</button>
+            <button onclick="operador('/')" type="button" class="botao">/</button>
         </div>
 
         <div class="row">
-            <button type="button">7</button>
-            <button type="button">8</button>
-            <button type="button">9</button>
-            <button type="button" class="botao">*</button>
+            <button onclick="inserir(7)" type="button">7</button>
+            <button onclick="inserir(8)" type="button">8</button>
+            <button onclick="inserir(9)" type="button">9</button>
+            <button onclick="operador('*')" type="button" class="botao">*</button>
         </div>
 
             <div class="row">
-            <button type="button">4</button>
-            <button type="button">5</button>
-            <button type="button">6</button>
-            <button type="button" class="botao">+</button>
+            <button onclick="inserir(4)" type="button">4</button>
+            <button onclick="inserir(5)" type="button">5</button>
+            <button onclick="inserir(6)" type="button">6</button>
+            <button onclick="operador('+')" type="button" class="botao">+</button>
         </div>
 
         <div class="row">
-            <button type="button" >1</button>
-            <button type="button" >2</button>
-            <button type="button" >3</button>
-            <button type="button" class="botao">-</button>
+            <button onclick="inserir(1)" type="button" >1</button>
+            <button onclick="inserir(2)" type="button" >2</button>
+            <button onclick="inserir(3)" type="button" >3</button>
+            <button onclick="operador('-')" type="button" class="botao">-</button>
         </div>
 
                 <div class="row">
-            <button type="button" class="botao">,</button>
-            <button type="button" >0</button>
+            <button onclick="virgula()" type="button" class="botao">,</button>
+            <button onclick="inserir(0)" type="button" >0</button>
             
-            <button type="button" id="opr">=</button>
+            <button onclick="calcular()" type="button" id="opr">=</button>
         </div>
     </div>
+
+     <script>
+        //campo do display
+        display=document.getElementById('numberbox');
+        //elementos ensenciais
+        n1 = null;
+        sinal = null;
+        n2=null;
+
+        //insirir numero no display
+        function inserir(a){
+            if(display.value==="0"){
+                display.value=a;
+            }else{
+                display.value +=a;
+            }
+           }
+        //selecionar operador
+        function operador(op){
+            n1 = parseFloat(display.value); //vai guardar o valor 1
+            sinal = op;
+            display.value = "0";
+        }
+
+
+        function calcular(){
+            n2 = parseFloat(display.value); // vai guardar o valor 2
+            
+            switch(sinal){
+
+                case "+":
+                    res = n1 + n2;
+                break;
+
+                 case "-":
+                    res = n1 - n2;
+                break;
+
+                 case "*":
+                    res = n1 * n2;
+                break;
+
+                 case "/":
+                    if (n2 ===0) {
+                        alert('erro na divisão');
+                    }else{
+                    res = n1 / n2;
+                    }
+                break;
+
+                case "%":
+                         res = n1 % n2;
+                break;
+
+                default:
+                alert("Operação inválida");
+                return;
+            }
+
+            display.value = res;
+            sinal = null;
+            n1 = null;
+        }
+
+        //função limpar
+        function limpar() {
+            n1 = null;
+            sinal = null;
+            display.value = "0";
+            
+        }
+
+        function apagar(){
+            if (display.value.length>1) {
+                display.value= display.value.slice(0,-1);
+            }else{
+                display.value = 0;
+            }
+
+        }
+        
+       
+            function virgula(){
+                 if (!display.value.includes('.')) {
+                display.value += '.';
+                }
+             }
+
+
+    </script>
+    
 </body>
 </html>
